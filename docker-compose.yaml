@@ -1,0 +1,22 @@
+
+services:
+  # Ktor 애플리케이션
+  ktor-app:
+    build: .
+    ports:
+      - "9000:8080"
+  
+  # MySQL 데이터베이스
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "0.0.0.0:3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ktor_db
+      MYSQL_ROOT_HOST: '%'
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
