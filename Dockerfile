@@ -9,6 +9,7 @@ WORKDIR /app
 # 현재 디렉토리의 app.jar 파일을 컨테이너의 /app 디렉토리로 복사합니다.
 # 이 Dockerfile을 사용하기 전에, 반드시 프로젝트를 빌드하여 app.jar을 만들어야 합니다.
 COPY app.jar /app/app.jar
+COPY .env /app/.env
 
 # 애플리케이션이 외부에서 접근할 포트를 지정합니다.
 EXPOSE 9000
